@@ -117,13 +117,13 @@ noded index.js
 
 **Screenshot**
 
- ![Server Running](screenshots/server_running_on_5000.png)
+ ![Server Running](Screenshots/server_running_on_5000.png)
 
  * In your EC2 security group create a new inbound rule for port 5000
 
 **Screenshot**
 
-![EC2 5000](screenshots/ec2_5000.png)
+![EC2 5000](Screenshots/ec2_5000.png)
 
 * Open your web browser and access your server's public ip followed by port 5000
 
@@ -131,7 +131,7 @@ noded index.js
 http://<publicDNS>:5000
 ```
 **Screenshot**
-![Welcome to express](screenshots/welcome_to_express.png)
+![Welcome to express](Screenshots/welcome_to_express.png)
 
 ### 1.5 Routes
 * Routing refers to how an application’s endpoints (URIs) respond to client requests
@@ -322,7 +322,7 @@ node index.js
 * Using environment variables (.env) is a security best practice that separates sensitive configuration data from your application code.
 
 **Screeenshot**
-![Database Connected Successful](screenshots/database_connected_successfully.png)
+![Database Connected Successful](Screenshots/database_connected_successfully.png)
 
 ## 3 Testing the Backendsetup
 ### 3.1 Install Postman
@@ -343,17 +343,17 @@ node index.js
 }
 ```
 **Screenshot**
-![Post request](screenshots/post_request.png)
+![Post request](Screenshots/post_request.png)
 
 ### 3.3 GET Request
 * Endpoint: http://<PublicIP-or-PublicDNS>:5000/api/todos
 **Screenshot**
-![Get request](screenshots/get_request.png)
+![Get request](Screenshots/get_request.png)
 
 ### 3.4 DELETE Request - Remove Task (Optional)
 * Endpoint: http://<PublicIP-or-PublicDNS>:5000/api/todos/<task_id>
 **Screenshot**
-![Delete request](screenshots/delete_request.png)
+![Delete request](Screenshots/delete_request.png)
 
 ## 4 Frontend Creation
 
@@ -684,4 +684,4 @@ npm run dev
 * The app should now be fully functional with a modern React interface connected to your backend API!
 
 **Screenshot**
-![Working App](screenshots/react_app_working.png)
+![Working App](Screenshots/react_app_working.png)
