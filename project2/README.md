@@ -62,7 +62,7 @@ sudo apt-get install -y nodejs
  ```
  **Screenshots:**
 
- ![Node Installed](screenshots/verification_of_node_installation.png)
+ ![Node Installed](Screenshots/verification_of_node_installation.png)
 
 ### 1.3 Application Code Setup
 * Make a directory for your project using the ```mkdir Todo ``` command
