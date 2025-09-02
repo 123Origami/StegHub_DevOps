@@ -389,7 +389,281 @@ angular.module('myApp', [])
   });
 ```
 * Create the index.html file in the smae folder and paste the following code into it
-```js
+
+```html
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="myCtrl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Management System</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2980b9;
+      --accent-color: #e74c3c;
+      --light-color: #f9f9f9;
+      --border-color: #ddd;
+      --text-color: #333;
+      --shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: #f5f7fa;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin: 25px 0 15px;
+      color: var(--secondary-color);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 8px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 15px 0;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    thead tr {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    tbody tr:nth-of-type(even) {
+      background-color: var(--light-color);
+    }
+
+    tbody tr:last-of-type {
+      border-bottom: 2px solid var(--primary-color);
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    }
+
+    button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .delete-btn {
+      background-color: var(--accent-color);
+    }
+
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .empty-message {
+      text-align: center;
+      padding: 20px;
+      color: #777;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+
+      .container {
+        padding: 10px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Book Management System</h1>
+      <p>Add and manage your book collection</p>
+    </header>
+
+    <div class="card">
+      <h2>Add New Book</h2>
+      <form ng-submit="add_book()">
+        <div class="form-group">
+          <label for="bookName">Name:</label>
+          <input type="text" id="bookName" ng-model="Name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="bookIsbn">ISBN:</label>
+          <input type="text" id="bookIsbn" ng-model="Isbn" required>
+        </div>
+
+        <div class="form-group">
+          <label for="bookAuthor">Author:</label>
+          <input type="text" id="bookAuthor" ng-model="Author" required>
+        </div>
+
+        <div class="form-group">
+          <label for="bookPages">Pages:</label>
+          <input type="number" id="bookPages" ng-model="Pages" required>
+        </div>
+
+        <button type="submit">Add Book</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Book List</h2>
+
+      <table ng-if="books.length > 0">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>ISBN</th>
+            <th>Author</th>
+            <th>Pages</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="book in books">
+            <td>{{book.name}}</td>
+            <td>{{book.isbn}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.pages}}</td>
+            <td>
+              <button class="delete-btn" ng-click="del_book(book)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="empty-message" ng-if="books.length === 0">
+        No books in your collection yet. Add your first book above!
+      </p>
+    </div>
+  </div>
+
+  <script>
+    angular.module('myApp', [])
+    .controller('myCtrl', function($scope) {
+      // Initialize books array
+      $scope.books = [];
+
+      // Add book function
+      $scope.add_book = function() {
+        if ($scope.Name && $scope.Isbn && $scope.Author && $scope.Pages) {
+          $scope.books.push({
+            name: $scope.Name,
+            isbn: $scope.Isbn,
+            author: $scope.Author,
+            pages: $scope.Pages
+          });
+
+          // Reset form
+          $scope.Name = '';
+          $scope.Isbn = '';
+          $scope.Author = '';
+          $scope.Pages = '';
+        }
+      };
+
+      // Delete book function
+      $scope.del_book = function(book) {
+        const index = $scope.books.indexOf(book);
+        if (index !== -1) {
+          $scope.books.splice(index, 1);
+        }
+      };
+    });
+  </script>
+</body>
+</html>
 ```
 * Change back to the books directory
 * Run the following command to start the server
