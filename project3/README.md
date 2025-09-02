@@ -388,7 +388,7 @@ angular.module('myApp', [])
 
   });
 ```
-* Create the index.html file in the smae folder and paste the following code into it
+* Create the index.html file in the same folder and paste the following code into it
 
 ```html
 <!DOCTYPE html>
