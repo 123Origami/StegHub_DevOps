@@ -162,4 +162,7 @@ Remember: every great application starts with a good conversation between client
 
 ---
 *Now go forth and build something wonderful! Your digital kingdom awaits its first citizens (tables and data)!*
+<<<<<<< HEAD
 ```
+=======
+>>>>>>> 4b5a2f2a205152c6532085c75aeef066f839ccfb
