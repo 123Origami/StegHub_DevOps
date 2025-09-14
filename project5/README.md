@@ -47,9 +47,12 @@ sudo gdisk /dev/nvme1n1
 lsblk
 ```
 * Initial view of partitons
- ![First View of Partions](screenshots/lsblk1.png)
+
+![First View of Partions](screenshots/lsblk1.png)
+
 * Verification of partitons
-  ![Second View of Partions](screenshots/lsblk2.png)
+
+![Second View of Partions](screenshots/lsblk2.png)
 
 #### 1.3. LVM Configuration
 ```bash
