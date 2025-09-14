@@ -161,7 +161,5 @@ Remember: every great application starts with a good conversation between client
 
 
 ---
-
 *Now go forth and build something wonderful! Your digital kingdom awaits its first citizens (tables and data)!*
 ```
-
