@@ -95,7 +95,6 @@ FLUSH PRIVILEGES;
 ```
 
 
-![My Sql Setup](screenshots/My_sql_server_setup.png)
 
 ## Step 3 - Prepare Web Servers
 
