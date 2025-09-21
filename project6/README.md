@@ -94,7 +94,7 @@ GRANT ALL PRIVILEGES ON tooling.* TO 'webaccess'@'<webservers-subnet-cidr>';
 FLUSH PRIVILEGES;
 ```
 
-![My Sql Setup](My_sql_server_setup.png)
+![My Sql Setup](screenshots/My_sql_server_setup.png)
 
 ## Step 3 - Prepare Web Servers
 
