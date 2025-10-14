@@ -50,7 +50,8 @@ sudo systemctl enable jenkins
 #### 1.5 Initial Jenkins Setup
 - Access Jenkins at: `http://<JENKINS_SERVER_IP>:8080`
 
-![Jenkins Ready](screenshots/jenkins_setup_ready.png)
+![Initial Jenkins Page](screenshots/initial_jenkins_page_before_login.png)
+
 
 - Retrieve admin password:
   ```bash
@@ -59,7 +60,7 @@ sudo systemctl enable jenkins
 - Install suggested plugins
 - Create admin user
 
-![Initial Jenkins Page](screenshots/initial_jenkins_page_before_login.png)
+![Jenkins Ready](screenshots/jenkins_setup_ready.png)
 
 ### Step 2: GitHub Webhook Configuration
 
@@ -193,7 +194,3 @@ cat /mnt/apps/README.md
 ## Conclusion
 
 This setup provides a robust CI/CD pipeline that automatically deploys code changes from GitHub to your NFS server, enabling continuous integration and deployment for your applications.
-
----
-
-*Note: Replace placeholder values (IP addresses, repository URLs, etc.) with your actual environment details.*
