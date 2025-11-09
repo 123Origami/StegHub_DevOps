@@ -143,7 +143,7 @@ df -h
 # Create test file and verify it appears on other servers
 touch /var/www/test.txt
 ```
-![Test Connection](screenshots/test_conection_2.png)
+![Test Connection](screenshots/test_conection_6.png)
 
 ![Test Connection](screenshots/test_conection_1.png)
 ### 7. Mount Log Directory
