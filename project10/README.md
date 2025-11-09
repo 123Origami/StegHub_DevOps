@@ -24,7 +24,7 @@ sudo apt install ansible -y
 ansible --version
 ```
 
-**Screenshot 1: Take a screenshot of the `ansible --version` output**
+![Ansible Version](screenshots/ansible_version.png)
 
 ### Step 2: Set Up SSH Agent and Keys (The Way We Did It)
 
@@ -228,7 +228,7 @@ ansible -i inventory/dev db,lb -a "which wireshark"
 ansible -i inventory/dev nfs,webservers -m shell -a "rpm -q wireshark || echo 'Wireshark not in default RHEL repos'"
 ```
 
-**Screenshot 2: Take a screenshot of the wireshark verification output showing `/usr/bin/wireshark` on the database server**
+![Wireshark On DB](screenshots/wireshark%20on%20db.png)
 
 ### Step 12: Git Workflow
 
