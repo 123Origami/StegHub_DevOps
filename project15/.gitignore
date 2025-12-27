@@ -1,0 +1,44 @@
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+terraform.tfstate.backup
+terraform.tfstate.lock.info
+.terraform.lock.hcl
+
+# SSH Keys
+*.pem
+*.key
+terraform_key        # Your private key
+id_rsa
+id_dsa
+
+# AWS Credentials
+.aws/
+*.cred
+credentials
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Sensitive files
+secrets.auto.tfvars
+secrets.tfvars
+*.secret
+.env
+.env.local
+.env.*.local
+
+# Local files
+*.log
+*.zip
+*.tar.gz
