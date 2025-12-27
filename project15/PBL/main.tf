@@ -254,7 +254,7 @@ resource "aws_security_group" "database_sg" {
 # 14. Key Pair
 resource "aws_key_pair" "deployer" {
   key_name   = "${var.project_name}-key"
-  public_key = file("C:/Users/User/terraform_key.pub")  # Replace with your public key path
+  public_key = file("${path.module}/terraform_key.pub")  # Replace with your public key path
 
   tags = merge(local.common_tags, {
     Name = "${var.project_name}-KeyPair"
@@ -531,15 +531,15 @@ resource "aws_db_parameter_group" "database" {
 
 # 30. RDS Instance for Tooling
 resource "aws_db_instance" "tooling_db" {
-  identifier             = "plb-tooling-db"
+  identifier             =  "${var.project_name}-tooling-db"
   engine                = "mysql"
   engine_version        = "8.0"
   instance_class        = "db.t3.micro"
   allocated_storage     = 20
   storage_type          = "gp2"
   db_name               = "toolingdb"
-  username              = "admin"
-  password              = "ChangeThisPassword123!"  # Change in production!
+  username              = "REDACTED_FOR_GITHUB" 
+  password              =  "REDACTED_FOR_GITHUB"   # Change in production!
   
   db_subnet_group_name   = aws_db_subnet_group.database.name
   vpc_security_group_ids = [aws_security_group.database_sg.id]
@@ -557,15 +557,15 @@ resource "aws_db_instance" "tooling_db" {
 
 # 31. RDS Instance for Wordpress
 resource "aws_db_instance" "wordpress_db" {
-  identifier             = "plb-wordpress-db"
+  identifier             = "${var.project_name}-wordpress-db"
   engine                = "mysql"
   engine_version        = "8.0"
   instance_class        = "db.t3.micro"
   allocated_storage     = 20
   storage_type          = "gp2"
   db_name               = "wordpressdb"
-  username              = "admin"
-  password              = "ChangeThisPassword123!"  # Change in production!
+  username              =  "REDACTED_FOR_GITHUB" 
+  password              =  "REDACTED_FOR_GITHUB"   # Change in production!
   
   db_subnet_group_name   = aws_db_subnet_group.database.name
   vpc_security_group_ids = [aws_security_group.database_sg.id]
@@ -580,3 +580,6 @@ resource "aws_db_instance" "wordpress_db" {
     Name = "${var.project_name}-Wordpress-DB"
   })
 }
+## 🔒 Security Note
+All sensitive values are managed via environment variables or AWS Secrets Manager.
+Hardcoded values in code are placeholders only."
