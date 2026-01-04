@@ -1,26 +1,53 @@
-# Terraform
-**/.terraform/*
+# Terraform files
+.terraform/
 *.tfstate
 *.tfstate.*
 *.tfvars
 *.tfvars.json
 terraform.tfstate.backup
-terraform.tfstate.lock.info
+.terraform.tfstate.lock.info
 .terraform.lock.hcl
 
-# SSH Keys
-*.pem
-*.key
-terraform_key        # Your private key
-id_rsa
-id_dsa
+# Local .terraform directories
+**/.terraform/*
 
-# AWS Credentials
+# Crash log files
+crash.log
+crash.*.log
+
+# Exclude all .tfstate files from Git
+*.tfstate
+*.tfstate.*
+
+# Ignore override files as they are usually used to override resources locally
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Include override files you do wish to add to version control using negated pattern
+# !example_override.tf
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+# AWS-specific files
+# AWS CLI configuration
 .aws/
-*.cred
-credentials
 
-# IDE files
+# SSH keys
+*.pem
+*.p12
+*.key
+*.pub
+
+# Sensitive data
+secrets.tfvars
+*.secret.tfvars
+variables.auto.tfvars
+
+# Editor files
 .vscode/
 .idea/
 *.swp
@@ -30,15 +57,35 @@ credentials
 .DS_Store
 Thumbs.db
 
-# Sensitive files
-secrets.auto.tfvars
-secrets.tfvars
-*.secret
-.env
-.env.local
-.env.*.local
-
-# Local files
+# Log files
 *.log
-*.zip
-*.tar.gz
+
+# Plan files
+*.plan
+tfplan
+
+# Lock files
+*.lock
+.terraform.lock.hcl
+
+# Backup files
+*.backup
+
+# User-specific files
+terraform.auto.tfvars  # This contains your personal AWS credentials
+
+# Local variable files
+*.auto.tfvars
+
+# Temporary files
+tmp/
+temp/
+
+# macOS files
+.DS_Store
+
+# Windows files
+desktop.ini
+
+# Compiled files
+*.tf.json
