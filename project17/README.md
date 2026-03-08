@@ -1,11 +1,11 @@
 # **Terraform Advanced Concepts & Infrastructure Refactoring Project**
 
-## **📋 Project Overview**
+## **Project Overview**
 This project focuses on enhancing Terraform infrastructure code by implementing advanced AWS concepts. We will transition from local state management to remote backend using S3 with DynamoDB locking, refactor code using dynamic blocks and modules, and implement best practices for production-grade Terraform configurations.
 
 ---
 
-## ** Project Objectives**
+## **Project Objectives**
 
 ### **Core Objectives:**
 1. **Implement Remote State Management** with S3 backend and DynamoDB locking
@@ -24,7 +24,7 @@ This project focuses on enhancing Terraform infrastructure code by implementing 
 
 ---
 
-## ** Architecture Components**
+## **Architecture Components**
 
 ### **1. Remote Backend Infrastructure**
 ```
@@ -64,7 +64,7 @@ PBL/
 
 ---
 
-## ** Implementation Guide**
+## **Implementation Guide**
 
 ### **Phase 1: Setting Up Remote Backend**
 
@@ -521,7 +521,7 @@ environments/
 
 ---
 
-## **🔧 Advanced Features Implementation**
+## **Advanced Features Implementation**
 
 ### **1. Dynamic Blocks for Route Tables**
 ```hcl
@@ -630,7 +630,7 @@ repos:
 
 ---
 
-## **🚀 Deployment Workflow**
+## **Deployment Workflow**
 
 ### **Development Workflow:**
 ```bash
@@ -700,7 +700,7 @@ jobs:
 
 ---
 
-## **🔐 Security Best Practices**
+## **Security Best Practices**
 
 ### **1. Secret Management:**
 ```hcl
@@ -797,7 +797,7 @@ terraform import aws_instance.web i-1234567890abcdef0
 
 ---
 
-## **🚨 Troubleshooting Guide**
+## **Troubleshooting Guide**
 
 ### **Common Issues and Solutions:**
 
@@ -849,7 +849,7 @@ data "aws_ami" "amazon_linux_2" {
 
 ---
 
-## **📚 Best Practices Summary**
+## **Best Practices Summary**
 
 ### **Code Organization:**
 1. **Modular Design**: Break down infrastructure into logical modules
