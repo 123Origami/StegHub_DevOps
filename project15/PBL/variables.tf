@@ -47,3 +47,30 @@ variable "environment" {
   description = "Environment name"
   default     = "dev"
 }
+
+variable "ami" {
+  type        = string
+  description = "AMI ID for launch templates"
+}
+
+variable "keypair" {
+  type        = string
+  description = "EC2 key pair name"
+}
+
+variable "account_no" {
+  type        = number
+  description = "AWS account number"
+}
+
+variable "master-username" {
+  type        = string
+  description = "RDS admin username"
+}
+
+variable "master-password" {
+  type        = string
+  description = "RDS admin password"
+  sensitive   = true
+}
+

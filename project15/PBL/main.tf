@@ -580,6 +580,7 @@ resource "aws_db_instance" "wordpress_db" {
     Name = "${var.project_name}-Wordpress-DB"
   })
 }
+
 ## 🔒 Security Note
 All sensitive values are managed via environment variables or AWS Secrets Manager.
 Hardcoded values in code are placeholders only."
