@@ -1,0 +1,120 @@
+pipeline {
+    agent any
+
+    environment {
+        // Update with your Docker Hub username
+        DOCKER_HUB_USERNAME = 'your-dockerhub-username'
+        DOCKER_HUB_CREDENTIALS = 'docker-hub'
+        
+        // Build tag
+        BUILD_TAG = "${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+                script {
+                    // Detect which app we're building
+                    if (fileExists('tooling-02/Dockerfile')) {
+                        env.APP_TYPE = 'tooling'
+                        env.APP_DIR = 'tooling-02'
+                        env.IMAGE_NAME = "${DOCKER_HUB_USERNAME}/tooling"
+                    } else if (fileExists('php-todo/Dockerfile')) {
+                        env.APP_TYPE = 'php-todo'
+                        env.APP_DIR = 'php-todo'
+                        env.IMAGE_NAME = "${DOCKER_HUB_USERNAME}/php-todo"
+                    }
+                }
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    dir("${env.APP_DIR}") {
+                        sh """
+                            docker build -t ${env.IMAGE_NAME}:${BUILD_TAG} .
+                            docker tag ${env.IMAGE_NAME}:${BUILD_TAG} ${env.IMAGE_NAME}:latest
+                        """
+                    }
+                }
+            }
+        }
+
+        stage('Test Application') {
+            steps {
+                script {
+                    dir("${env.APP_DIR}") {
+                        // Start containers
+                        sh "docker compose up -d"
+                        
+                        // Wait for app to start
+                        sleep time: 15, unit: 'SECONDS'
+                        
+                        // Test endpoint based on app type
+                        if (env.APP_TYPE == 'tooling') {
+                            sh "curl -f http://localhost:5000 || exit 1"
+                        } else {
+                            sh "curl -f http://localhost:5001 || exit 1"
+                        }
+                        
+                        echo "✅ Application test passed!"
+                    }
+                }
+            }
+            post {
+                always {
+                    dir("${env.APP_DIR}") {
+                        sh "docker compose down -v"
+                    }
+                }
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            when {
+                branch 'main'
+                branch 'master'
+            }
+            steps {
+                script {
+                    docker.withRegistry('', DOCKER_HUB_CREDENTIALS) {
+                        sh """
+                            docker push ${env.IMAGE_NAME}:${BUILD_TAG}
+                            docker push ${env.IMAGE_NAME}:latest
+                        """
+                    }
+                    echo "✅ Image pushed: ${env.IMAGE_NAME}:${BUILD_TAG}"
+                }
+            }
+        }
+
+        stage('Clean Up') {
+            steps {
+                script {
+                    sh """
+                        docker rmi ${env.IMAGE_NAME}:${BUILD_TAG} || true
+                        docker rmi ${env.IMAGE_NAME}:latest || true
+                        docker system prune -f
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            script {
+                sh "docker compose -f tooling-02/docker-compose.yaml down -v || true"
+                sh "docker compose -f php-todo/docker-compose.yaml down -v || true"
+            }
+        }
+        success {
+            echo "🎉 Pipeline completed successfully!"
+        }
+        failure {
+            echo "❌ Pipeline failed!"
+        }
+    }
+}
